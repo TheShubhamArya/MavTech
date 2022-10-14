@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/nav_search"
+        android:icon="@drawable/ic_search"
+        android:title="Search"
+        android:iconTint="@color/white"
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="ifRoom|withText" />
+
+    <item
+        android:id="@+id/nav_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="Filter "
+        android:iconTint="@color/white"
+        app:actionViewClass="android.widget.Button">
+
+        <menu>
+            <item
+                android:id="@+id/filter_byLaptop"
+                android:title="Laptop"
+                android:iconTint="@color/white"
+                app:actionViewClass="android.widget.SearchView" />
+
+            <item
+                android:id="@+id/filter_byTablet"
+                android:title="Tablet"
+                android:iconTint="@color/white"
+                app:actionViewClass="android.widget.SearchView" />
+
+            <item
+                android:id="@+id/filter_byHeadphones"
+                android:title="Headphone"
+                android:iconTint="@color/white"
+                app:actionViewClass="android.widget.SearchView" />
+
+            <item
+                android:id="@+id/filter_byMobile"
+                android:title="Mobile"
+                android:iconTint="@color/white"
+                app:actionViewClass="android.widget.SearchView" />
+
+            <item
+                android:id="@+id/filter_byAll"
+                android:title="All"
+                android:iconTint="@color/white"
+                app:actionViewClass="android.widget.SearchView" />
+
+        </menu>
+
+    </item>
+
+
+</menu>
