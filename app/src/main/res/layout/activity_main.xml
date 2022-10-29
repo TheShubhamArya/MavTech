@@ -12,6 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="?android:attr/windowBackground"
+        app:backgroundTint="@color/appBackground"
         app:itemBackground="@color/appBackground"
         app:itemIconTint="@drawable/bottom_nav_color"
         app:itemTextColor="@drawable/bottom_nav_color"

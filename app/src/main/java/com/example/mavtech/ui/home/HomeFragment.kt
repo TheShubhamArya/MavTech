@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mavtech.ItemDetailActivity
+import com.example.mavtech.R
 import com.example.mavtech.databinding.FragmentHomeBinding
 
 
@@ -58,10 +59,11 @@ class HomeFragment : Fragment() {
         return root
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
-        inflater.inflate(com.example.mavtech.R.menu.nav_menu,menu)
-        val search = menu.findItem(com.example.mavtech.R.id.nav_search)
+        inflater.inflate(R.menu.nav_menu,menu)
+        val search = menu.findItem(R.id.nav_search)
         val searchView = search?.actionView as SearchView
         searchView.queryHint = "Search by name"
 
@@ -86,19 +88,19 @@ class HomeFragment : Fragment() {
     @Deprecated("This func is deprecated")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            com.example.mavtech.R.id.filter_byLaptop ->
+            R.id.filter_byLaptop ->
                 filterBy("laptop")
 
-            com.example.mavtech.R.id.filter_byHeadphones ->
+            R.id.filter_byHeadphones ->
                 filterBy("headphones")
 
-            com.example.mavtech.R.id.filter_byTablet ->
+            R.id.filter_byTablet ->
                 filterBy("tablet")
 
-            com.example.mavtech.R.id.filter_byMobile ->
+            R.id.filter_byMobile ->
                 filterBy("mobile")
 
-            com.example.mavtech.R.id.filter_byAll ->
+            R.id.filter_byAll ->
                 recyclerView.adapter = HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
                     listItemClicked(selectedDevice)
                 }
