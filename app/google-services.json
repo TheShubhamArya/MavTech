@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "804993863635",
+    "project_id": "mavstech-5ed4e",
+    "storage_bucket": "mavstech-5ed4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:804993863635:android:5bbd9adfc5104e8e5e2926",
+        "android_client_info": {
+          "package_name": "com.example.mavtech"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "804993863635-uiin2mfjl9mtma5lv6jb5th694o06ggf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAmGHn1EPm-lJppU1a7E420FVgVKC4esBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "804993863635-uiin2mfjl9mtma5lv6jb5th694o06ggf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
