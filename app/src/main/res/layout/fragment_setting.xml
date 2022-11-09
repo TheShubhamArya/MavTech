@@ -38,6 +38,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/differnetDevicesImageView"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:src="@drawable/tech_items_image"/>
+
+
             <TextView
                 android:id="@+id/introBodyTV"
                 android:layout_width="wrap_content"
@@ -80,6 +87,12 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/checkoutDevicesImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/checkout_counter"/>
 
             <TextView
                 android:id="@+id/getItemHeaderTV"
@@ -141,7 +154,7 @@
 
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="150dp"
                 android:layout_marginHorizontal="15dp"
                 android:layout_marginVertical="5dp"
                 android:textColor="#CFCECD"
