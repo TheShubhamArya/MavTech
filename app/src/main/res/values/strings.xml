@@ -2,7 +2,7 @@
     <string name="app_name">MavTech</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Profile</string>
-    <string name="title_notifications">Setting</string>
+    <string name="title_notifications">Information</string>
 
     <string name="signin_label">Signin</string>
     <string name="signup_label">Signup</string>

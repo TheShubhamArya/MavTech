@@ -122,7 +122,8 @@ class ItemDetailActivity : AppCompatActivity() {
     private fun scheduleNotification() {
         val intent = Intent(applicationContext, Notification::class.java)
         val title = device?.name
-        val message = "You rented $title on ${fromDate.toString()} to ${toDate.toString()}. This item is due soon. Please return it before the due date."
+        val message = "You rented $title on ${fromDate.toString()} to ${toDate.toString()}. This item is due soon. " +
+                "Please return it before the due date."
         intent.putExtra(titleExtra, title)
         intent.putExtra(messageExtra, message)
         val pendingIntent = PendingIntent.getBroadcast(

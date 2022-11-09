@@ -168,17 +168,6 @@
             android:textAlignment="viewStart"
             android:textAllCaps="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:textColor="#CFCECD"
-            android:textSize="12sp"
-            android:text="© Mav Tech Rental 2022"
-            />
-
-
-
 
     </LinearLayout>
 

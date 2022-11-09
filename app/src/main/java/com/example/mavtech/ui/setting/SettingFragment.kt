@@ -29,13 +29,8 @@ class SettingFragment : Fragment() {
         _binding = FragmentSettingBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textNotifications
-        val someButton: Button = binding.someButton
         notificationsViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        someButton.setOnClickListener {
-            textView.text = "Whats upppppp"
+
         }
         return root
     }

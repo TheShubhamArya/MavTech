@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
-    private lateinit var recyclerView : RecyclerView
+    private lateinit var recyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
-        inflater.inflate(R.menu.nav_menu,menu)
+        inflater.inflate(R.menu.nav_menu, menu)
         val search = menu.findItem(R.id.nav_search)
         val searchView = search?.actionView as SearchView
         searchView.queryHint = "Search by name"
@@ -76,13 +76,13 @@ class HomeFragment : Fragment() {
                 val filteredDevices = devices.filter { device ->
                     device.name.lowercase().contains(newText.toString().lowercase())
                 }
-                recyclerView.adapter = HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
-                    listItemClicked(selectedDevice)
-                }
+                recyclerView.adapter =
+                    HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
+                        listItemClicked(selectedDevice)
+                    }
                 return true
             }
         })
-
     }
 
     @Deprecated("This func is deprecated")
@@ -101,9 +101,10 @@ class HomeFragment : Fragment() {
                 filterBy("mobile")
 
             R.id.filter_byAll ->
-                recyclerView.adapter = HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
-                    listItemClicked(selectedDevice)
-                }
+                recyclerView.adapter =
+                    HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
+                        listItemClicked(selectedDevice)
+                    }
         }
         return false
     }
@@ -112,9 +113,10 @@ class HomeFragment : Fragment() {
         val filteredDevices = devices.filter { device ->
             device.type == type
         }
-        recyclerView.adapter = HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
-            listItemClicked(selectedDevice)
-        }
+        recyclerView.adapter =
+            HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
+                listItemClicked(selectedDevice)
+            }
     }
 
     private fun listItemClicked(device: TechDevice) {

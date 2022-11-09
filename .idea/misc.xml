@@ -12,14 +12,16 @@
         <entry key="app/src/main/res/drawable/ic_home_black_24dp.xml" value="0.1335" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1335" />
         <entry key="app/src/main/res/drawable/rounded_edit_text.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23274993896484386" />
         <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.21875" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.3043533325195313" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18780059814453126" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2519557237866681" />
-        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.16210739614994935" />
-        <entry key="app/src/main/res/layout/item_detail.xml" value="0.365936279296875" />
+        <entry key="app/src/main/res/layout/fragment_setting.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/history_list_item.xml" value="0.37430719068347484" />
+        <entry key="app/src/main/res/layout/item_detail.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.463596596835146" />
+        <entry key="app/src/main/res/layout/rental_history.xml" value="0.1461499493414387" />
         <entry key="app/src/main/res/layout/rounded_edit_text.xml" value="0.21875" />
         <entry key="app/src/main/res/layout/signin_screen.xml" value="0.1" />
         <entry key="app/src/main/res/layout/signup_screen.xml" value="0.23172607421875002" />

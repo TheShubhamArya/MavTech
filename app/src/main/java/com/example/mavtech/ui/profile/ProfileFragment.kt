@@ -9,8 +9,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.mavtech.ItemDetailActivity
+import com.example.mavtech.RentalHistoryActivity
 import com.example.mavtech.SigninActivity
-import com.example.mavtech.SignupActivity
 import com.example.mavtech.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -29,7 +30,7 @@ class ProfileFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val dashboardViewModel =
+        val profileViewModel =
             ViewModelProvider(this).get(ProfileViewModel::class.java)
 
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
@@ -39,17 +40,25 @@ class ProfileFragment : Fragment() {
         rentalHistoryButton = binding.historyButton
 
         currentRentalButton.setOnClickListener {
-            // take user to another screen to show the list of their currently rented items
+            // get the list of devices currently rented by the user
+            // send these devices to the RentalHistoryActivity
+            val intent = Intent(binding.root.context, RentalHistoryActivity::class.java)
+            intent.putExtra("header", "Currently Rented")
+            startActivity(intent)
         }
 
         rentalHistoryButton.setOnClickListener {
-            // take user to another screen to show the list of their past rented items
+            // get the history list of devices rented by the user
+            // send these devices to the RentalHistoryActivity
+            val intent = Intent(binding.root.context, RentalHistoryActivity::class.java)
+            intent.putExtra("header", "Rental History")
+            startActivity(intent)
         }
 
         logoutButton.setOnClickListener {
             // Add firebase function here to log out
             // Inside firebase function, when logout is successful, add the bottom 2 lines
-            val intent = Intent(binding.root.context, SignupActivity::class.java)
+            val intent = Intent(binding.root.context, SigninActivity::class.java)
             startActivity(intent)
         }
         return root
