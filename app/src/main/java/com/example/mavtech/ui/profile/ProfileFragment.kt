@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.mavtech.ItemDetailActivity
+import com.example.mavtech.HistoryType
 import com.example.mavtech.RentalHistoryActivity
 import com.example.mavtech.SigninActivity
 import com.example.mavtech.databinding.FragmentProfileBinding
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class ProfileFragment : Fragment() {
 
@@ -44,6 +45,7 @@ class ProfileFragment : Fragment() {
             // send these devices to the RentalHistoryActivity
             val intent = Intent(binding.root.context, RentalHistoryActivity::class.java)
             intent.putExtra("header", "Currently Rented")
+            intent.putExtra("historyType", HistoryType.current)
             startActivity(intent)
         }
 
@@ -52,12 +54,14 @@ class ProfileFragment : Fragment() {
             // send these devices to the RentalHistoryActivity
             val intent = Intent(binding.root.context, RentalHistoryActivity::class.java)
             intent.putExtra("header", "Rental History")
+            intent.putExtra("historyType", HistoryType.all)
             startActivity(intent)
         }
 
         logoutButton.setOnClickListener {
             // Add firebase function here to log out
             // Inside firebase function, when logout is successful, add the bottom 2 lines
+            Firebase.auth.signOut()
             val intent = Intent(binding.root.context, SigninActivity::class.java)
             startActivity(intent)
         }

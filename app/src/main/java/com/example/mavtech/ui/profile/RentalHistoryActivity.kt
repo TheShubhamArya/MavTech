@@ -9,9 +9,15 @@ import com.example.mavtech.ui.home.HomeRecyclerViewAdapter
 import com.example.mavtech.ui.home.TechDevice
 import com.example.mavtech.ui.profile.HistoryRecyclerViewAdapter
 
+enum class HistoryType {
+    current, all
+}
+
 class RentalHistoryActivity: AppCompatActivity() {
 
     private var header : String? = "History"
+    private var historyType : HistoryType = HistoryType.all
+
     private lateinit var recyclerView: RecyclerView
     var devices = listOf<TechDevice>(
         TechDevice("Macbook Pro 2022", "laptop"),
@@ -30,22 +36,26 @@ class RentalHistoryActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.rental_history)
         header = intent.getSerializableExtra("header") as? String
+        historyType = intent.getSerializableExtra("historyType") as HistoryType
         assert(
             supportActionBar != null //null check
         )
 
         (supportActionBar ?: return).setDisplayHomeAsUpEnabled(true)
         (supportActionBar ?: return).title = header
-        recyclerView = findViewById(R.id.historyRecyclerView)
-        recyclerView.setBackgroundColor(Color.DKGRAY)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = HistoryRecyclerViewAdapter(devices) {
+        if (historyType == HistoryType.current) {
+            recyclerView = findViewById(R.id.historyRecyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = HistoryRecyclerViewAdapter(devices) {
 
+            }
+        } else {
+            recyclerView = findViewById(R.id.historyRecyclerView)
+            recyclerView.layoutManager = LinearLayoutManager(this)
+            recyclerView.adapter = HistoryRecyclerViewAdapter(devices) {
+
+            }
         }
-//        recyclerView.adapter = HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
-////            listItemClicked(selectedDevice)
-//        }
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
