@@ -3,32 +3,30 @@ package com.example.mavtech.ui.home
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.SearchView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mavtech.ItemDetailActivity
 import com.example.mavtech.R
+import com.example.mavtech.RentalItem
 import com.example.mavtech.databinding.FragmentHomeBinding
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    var devices = listOf<TechDevice>(
-        TechDevice("Macbook Pro 2022", "laptop"),
-        TechDevice("Macbook Air", "laptop"),
-        TechDevice("iPhone 14 Pro", "mobile"),
-        TechDevice("iPhone 14", "mobile"),
-        TechDevice("iPad", "tablet"),
-        TechDevice("Apple Watch Series 8", "smart watch"),
-        TechDevice("Airpods Pro", "headphones"),
-        TechDevice("Airpods Pro 2", "headphones"),
-        TechDevice("iPhone 13 Pro", "mobile"),
-        TechDevice("iPhone 13", "mobile"),
-    )
+    var devices = arrayListOf<RentalItem>()
+    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var dbref: DatabaseReference
 
     // This property is only valid between onCreateView and onDestroyView.
     private val binding get() = _binding!!
@@ -39,6 +37,7 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         val homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
@@ -48,16 +47,44 @@ class HomeFragment : Fragment() {
         recyclerView = binding.homeRecyclerView
         recyclerView.setBackgroundColor(Color.DKGRAY)
         recyclerView.layoutManager = LinearLayoutManager(binding.homeRecyclerView.context)
-        recyclerView.adapter = HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
-            listItemClicked(selectedDevice)
-        }
-//        val textView: TextView = binding.textHome
+
+        firebaseAuth = Firebase.auth
+        val currentUser = firebaseAuth.currentUser
+
         homeViewModel.text.observe(viewLifecycleOwner) {
-//            textView.text = it
+
         }
+        getDataFromFirebase()
         setHasOptionsMenu(true)
         return root
     }
+
+    private fun getDataFromFirebase() {
+        dbref = FirebaseDatabase.getInstance().getReference("RentalItem")
+        dbref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    devices = arrayListOf<RentalItem>()
+                    for (userSnapshot in snapshot.children) {
+                        val device = userSnapshot.getValue(RentalItem::class.java)
+                        if (device != null) {
+                            if (device.rentedByUserID?.isEmpty() == true) {
+                                devices.add(device)
+                            }
+                        }
+                    }
+                }
+                recyclerView.adapter =
+                    HomeRecyclerViewAdapter(devices) { selectedDevice: RentalItem ->
+                        listItemClicked(selectedDevice)
+                    }
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+
+        })
+    }
+
 
     @Deprecated("Deprecated in Java")
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -74,10 +101,10 @@ class HomeFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val filteredDevices = devices.filter { device ->
-                    device.name.lowercase().contains(newText.toString().lowercase())
+                    device.name!!.lowercase().contains(newText.toString().lowercase())
                 }
                 recyclerView.adapter =
-                    HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
+                    HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: RentalItem ->
                         listItemClicked(selectedDevice)
                     }
                 return true
@@ -102,7 +129,7 @@ class HomeFragment : Fragment() {
 
             R.id.filter_byAll ->
                 recyclerView.adapter =
-                    HomeRecyclerViewAdapter(devices) { selectedDevice: TechDevice ->
+                    HomeRecyclerViewAdapter(devices) { selectedDevice: RentalItem ->
                         listItemClicked(selectedDevice)
                     }
         }
@@ -114,12 +141,12 @@ class HomeFragment : Fragment() {
             device.type == type
         }
         recyclerView.adapter =
-            HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: TechDevice ->
+            HomeRecyclerViewAdapter(filteredDevices) { selectedDevice: RentalItem ->
                 listItemClicked(selectedDevice)
             }
     }
 
-    private fun listItemClicked(device: TechDevice) {
+    private fun listItemClicked(device: RentalItem) {
         val intent = Intent(binding.homeRecyclerView.context, ItemDetailActivity::class.java)
         intent.putExtra("device", device)
         startActivity(intent)

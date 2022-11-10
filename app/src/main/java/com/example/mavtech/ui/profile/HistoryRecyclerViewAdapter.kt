@@ -7,11 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mavtech.R
-import com.example.mavtech.ui.home.TechDevice
+import com.example.mavtech.RentalItem
 
 class HistoryRecyclerViewAdapter (
-    private val devices: List<TechDevice>,
-    private val clickListener: (TechDevice)->Unit
+    private val devices: List<RentalItem>,
+    private val clickListener: (RentalItem)->Unit
 ): RecyclerView.Adapter<HistoryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryViewHolder {
@@ -34,9 +34,12 @@ class HistoryViewHolder(val view: View): RecyclerView.ViewHolder(view) {
     val deviceNameTV = view.findViewById<TextView>(R.id.tvNameHistory)
     val deviceImageView = view.findViewById<ImageView>(R.id.historyDeviceImageView)
     val deviceTypeTV = view.findViewById<TextView>(R.id.tvTypeHistory)
-    fun bind(device: TechDevice, clickListener: (TechDevice)->Unit) {
+    val dateTV = view.findViewById<TextView>(R.id.dateTV)
+
+    fun bind(device: RentalItem, clickListener: (RentalItem)->Unit) {
         deviceNameTV.text = "${device.name}"
         deviceTypeTV.text = "${device.type}"
+        dateTV.text = "${device.rentedToDate} - ${device.rentedFromDate}"
         view.setOnClickListener{
             clickListener(device)
         }
